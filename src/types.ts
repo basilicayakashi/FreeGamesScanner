@@ -1,7 +1,8 @@
 export type ProviderCode =
   | "STEAM"
   | "GOG"
-  | "EPICGAMES";
+  | "EPICGAMES"
+  | "ITCHIO"; 
 
 export type PromoType =
   | "FREE_TO_KEEP"
