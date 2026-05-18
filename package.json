@@ -24,6 +24,7 @@
     "better-sqlite3": "^12.10.0",
     "cheerio": "^1.2.0",
     "dotenv": "^17.4.2",
+    "free-games-shared": "github:basilicayakashi/free-games-shared",
     "luxon": "^3.7.2"
   },
   "type": "module"

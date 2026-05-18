@@ -1,5 +1,12 @@
 import type { FreeGamePromo } from "../types.js";
 
+import {
+  FREE_GAME_PROVIDERS,
+  FREE_GAME_PROMO_TYPES,
+  getFreeGameProviderLabel,
+  getFreeGamePromoTypeLabel
+} from "free-games-shared";
+
 type EpicCatalogResponse = {
   data?: {
     Catalog?: {
