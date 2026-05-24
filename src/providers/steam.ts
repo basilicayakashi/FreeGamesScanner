@@ -3,6 +3,11 @@ import type { Element } from "domhandler";
 import type { FreeGamePromo } from "../types.js";
 import { DateTime } from "luxon";
 
+import {
+  FREE_GAME_PROVIDERS,
+  FREE_GAME_PROMO_TYPES,
+} from "free-games-shared";
+
 const STEAM_SEARCH_URL =
   "https://store.steampowered.com/search/results/?query&start=0&count=100&dynamic_data=&sort_by=Released_DESC&maxprice=free&specials=1&infinite=1";
 
@@ -135,11 +140,11 @@ export async function fetchSteamPromos(): Promise<FreeGamePromo[]> {
     }
 
     promos.push({
-      providerCode: "STEAM",
+      providerCode: FREE_GAME_PROVIDERS.STEAM.code,
       title,
       promoUrl,
       expiresAt,
-      promoType: "FREE_TO_KEEP"
+      promoType: FREE_GAME_PROMO_TYPES.FREE_TO_KEEP.code
     });
   }
 

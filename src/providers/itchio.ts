@@ -3,6 +3,11 @@ import type { Element } from "domhandler";
 import { DateTime } from "luxon";
 import type { FreeGamePromo } from "../types.js";
 
+import {
+  FREE_GAME_PROVIDERS,
+  FREE_GAME_PROMO_TYPES
+} from "free-games-shared";
+
 const ITCHIO_ON_SALE_URL = "https://itch.io/games/on-sale";
 const ITCHIO_NEVER_EXPIRES = "9999-12-31T23:59:59.999Z";
 
@@ -70,11 +75,11 @@ export async function fetchItchioPromos(): Promise<FreeGamePromo[]> {
     }
 
     promos.push({
-      providerCode: "ITCHIO",
+      providerCode: FREE_GAME_PROVIDERS.ITCHIO.code,
       title,
       promoUrl: normalizeItchioUrl(href),
       expiresAt: ITCHIO_NEVER_EXPIRES,
-      promoType: "FREE_TO_KEEP"
+      promoType: FREE_GAME_PROMO_TYPES.FREE_TO_KEEP.code
     });
   });
 

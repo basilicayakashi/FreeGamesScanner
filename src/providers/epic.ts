@@ -3,8 +3,6 @@ import type { FreeGamePromo } from "../types.js";
 import {
   FREE_GAME_PROVIDERS,
   FREE_GAME_PROMO_TYPES,
-  getFreeGameProviderLabel,
-  getFreeGamePromoTypeLabel
 } from "free-games-shared";
 
 type EpicCatalogResponse = {
@@ -85,11 +83,11 @@ export async function fetchEpicPromos(): Promise<FreeGamePromo[]> {
     }
 
     promos.push({
-      providerCode: "EPICGAMES",
+      providerCode: FREE_GAME_PROVIDERS.EPICGAMES.code,
       title: game.title,
       promoUrl: `https://store.epicgames.com/fr/p/${slug}`,
       expiresAt: offer.endDate,
-      promoType: "FREE_TO_KEEP"
+      promoType: FREE_GAME_PROMO_TYPES.FREE_TO_KEEP.code
     });
   }
 
