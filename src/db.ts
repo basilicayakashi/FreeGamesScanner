@@ -1,6 +1,10 @@
 import Database from "better-sqlite3";
 
-export const db = new Database("database.sqlite");
+import dotenv from "dotenv";
+dotenv.config();
+
+//export const db = new Database("database.sqlite");
+export const db = new Database(process.env.SHARED_DB_PATH!);
 
 db.exec(`
 CREATE TABLE IF NOT EXISTS free_games (
