@@ -139,7 +139,12 @@ export async function fetchSteamPromos(): Promise<FreeGamePromo[]> {
       continue;
     }
 
+    const imageUrl = appId
+        ? `https://cdn.akamai.steamstatic.com/steam/apps/${appId}/header.jpg`
+        : "";
+
     promos.push({
+      image_url: imageUrl,
       providerCode: FREE_GAME_PROVIDERS.STEAM.code,
       title,
       promoUrl,

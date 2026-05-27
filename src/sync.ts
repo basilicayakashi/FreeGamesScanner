@@ -17,6 +17,7 @@ export function syncProviderGames(fetchedGames: FreeGamePromo[]): void {
 
     if (!existing) {
       insertFreeGameStmt.run(
+        game.image_url,
         game.providerCode,
         game.title,
         game.promoUrl,
@@ -27,6 +28,7 @@ export function syncProviderGames(fetchedGames: FreeGamePromo[]): void {
       console.log(`[NEW] ${game.title}`);
     } else {
       updateFreeGameStmt.run(
+        game.image_url,
         game.title,
         game.expiresAt,
         game.providerCode,

@@ -9,6 +9,7 @@ export const db = new Database(process.env.SHARED_DB_PATH!);
 db.exec(`
 CREATE TABLE IF NOT EXISTS free_games (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    image_url TEXT NOT NULL,
     provider_code TEXT NOT NULL,
     title TEXT NOT NULL,
     promo_url TEXT NOT NULL,
@@ -36,18 +37,20 @@ export const getFreeGameStmt = db.prepare(`
 
 export const insertFreeGameStmt = db.prepare(`
   INSERT INTO free_games (
+    image_url,
     provider_code,
     title,
     promo_url,
     expires_at,
     promo_type
   )
-  VALUES (?, ?, ?, ?, ?)
+  VALUES (?,?, ?, ?, ?, ?)
 `);
 
 export const updateFreeGameStmt = db.prepare(`
   UPDATE free_games
   SET
+    image_url = ?,
     title = ?,
     expires_at = ?,
     updated_at = CURRENT_TIMESTAMP

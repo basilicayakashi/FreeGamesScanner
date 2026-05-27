@@ -15,11 +15,14 @@ type EpicCatalogResponse = {
   };
 };
 
-type EpicGame = {
+ type EpicGame = {
   title: string;
   productSlug?: string;
   urlSlug?: string;
-
+  keyImages?: Array<{
+    type: string;
+    url: string;
+  }>;
   promotions?: {
     promotionalOffers?: Array<{
       promotionalOffers?: Array<{
@@ -28,7 +31,6 @@ type EpicGame = {
       }>;
     }>;
   };
-
   price?: {
     totalPrice?: {
       discountPrice?: number;
@@ -82,7 +84,12 @@ export async function fetchEpicPromos(): Promise<FreeGamePromo[]> {
       continue;
     }
 
+    const imageUrl = game.keyImages?.find(
+          img => img.type === "OfferImageWide" || img.type === "Thumbnail" || img.type === "DieselGameBox"
+        )?.url;
+
     promos.push({
+      image_url: imageUrl,
       providerCode: FREE_GAME_PROVIDERS.EPICGAMES.code,
       title: game.title,
       promoUrl: `https://store.epicgames.com/fr/p/${slug}`,

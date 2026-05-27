@@ -9,6 +9,7 @@ export type PromoType =
   | "PLAY_FOR_FREE";
 
 export type FreeGamePromo = {
+  image_url?: string;
   providerCode: ProviderCode;
   title: string;
   promoUrl: string;
