@@ -16,8 +16,14 @@ function extractSteamAppId(url: string): string | undefined {
 }
 
 function parseFrenchSteamDateToUtc(value: string): string | undefined {
+  /*
   const match = value.match(
     /(\d{1,2})\s+([a-zéû]+)\s+à\s+(\d{1,2})h(\d{2})/i
+  );
+  */
+
+  const match = value.match(
+    /(\d{1,2})\s+([a-zéû]+)(?:\s+à\s+(\d{1,2})h(\d{2}))?/i
   );
 
   if (!match) return undefined;
@@ -50,8 +56,10 @@ function parseFrenchSteamDateToUtc(value: string): string | undefined {
       year: DateTime.now().year,
       month,
       day: Number(dayRaw),
-      hour: Number(hourRaw),
-      minute: Number(minuteRaw)
+      //hour: Number(hourRaw),
+      hour: hourRaw ? Number(hourRaw) : 10,
+      //minute: Number(minuteRaw)
+      minute: minuteRaw ? Number(minuteRaw) : 0
     },
     {
       zone: "America/Los_Angeles"
