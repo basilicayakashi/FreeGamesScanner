@@ -97,7 +97,19 @@ async function fetchSteamAppPromotionEnd(
   );
 
   if (!match) {
-    console.warn(`[STEAM] app ${appId}: no promotion end found`);
+    const debug = html.match(
+      /.{0,200}(gard[ea]r gratuitement|gratuitement|avant le|offre).{0,200}/is
+    );
+
+    console.log(
+      `[STEAM] app ${appId} debug promo text:\n`,
+      debug?.[0] ?? "nothing found"
+    );
+
+    console.warn(
+      `[STEAM] app ${appId}: no promotion end found`
+    );
+
     return undefined;
   }
 
